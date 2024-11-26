@@ -9,7 +9,43 @@ public class AddressBookMain {
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.printf("Welcome to Address Book Program!\n");
 
+        AddressBook addressBook = new AddressBook(); // Initialize AddressBook
+
         Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\nChoose an option:");
+            System.out.println("1. Add Contact");
+            System.out.println("2. Display Contacts");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+
+                    Contact newContact = createContact(scanner);
+                    addressBook.addContact(newContact);
+                    break;
+                case 2:
+
+                    addressBook.displayContacts();
+                    break;
+                case 3:
+
+                    running = false;
+                    System.out.println("Exiting Address Book Program.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static Contact createContact(Scanner scanner) {
         System.out.println("\nEnter Contact Details:");
 
         System.out.print("First Name: ");
@@ -36,14 +72,6 @@ public class AddressBookMain {
         System.out.print("Email: ");
         String email = scanner.nextLine();
 
-        Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-
-
-        System.out.println("\nContact Created:");
-        System.out.println(contact);
-
+        return new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
     }
 }
-
-
-
