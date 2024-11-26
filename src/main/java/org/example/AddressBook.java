@@ -24,6 +24,7 @@ public class AddressBook {
                 System.out.println(contact);
             }
         }
+
     }
     public void editContact(String name, Scanner scanner) {
         for (Contact contact : contactList) {
@@ -85,4 +86,15 @@ public class AddressBook {
         }
         System.out.println("Contact with the name \"" + name + "\" not found.");
     }
+    public void deleteContact(String name) {
+        for (Contact contact : contactList) {
+            if (contact.getFirstName().equalsIgnoreCase(name)) {
+                contactList.remove(contact);
+                System.out.println("Contact with name \"" + name + "\" deleted successfully.");
+                return;
+            }
+        }
+        System.out.println("Contact with the name \"" + name + "\" not found.");
+    }
+
 }
